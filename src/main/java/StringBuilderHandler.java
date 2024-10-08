@@ -3,12 +3,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class StringBuilderHandler {
-    private StringBuilder sb;
-
-    public StringBuilderHandler(String sentences) {
-        this.sb = new StringBuilder(sentences);
-    }
-
     public void split(List<StringBuilder> parts, StringBuilder stringBuilder, String symbol) {
         int symbolIndex = stringBuilder.indexOf(symbol);
         if(symbolIndex == -1) {
@@ -19,7 +13,7 @@ public class StringBuilderHandler {
         if(symbolIndex != 0)
             parts.add(new StringBuilder(stringBuilder.substring(0, symbolIndex)));
 
-        split(parts, new StringBuilder(stringBuilder.substring(symbolIndex+1)), symbol);
+        split(parts, new StringBuilder(stringBuilder.substring(symbolIndex+symbol.length())), symbol);
     }
 
     public int getAmountOfWords(StringBuilder sentence) {
@@ -28,10 +22,14 @@ public class StringBuilderHandler {
         return words.size();
     }
 
-    public void displaySentencesInWordsCountOrder() {
+    public List<StringBuilder> sortSentencesInWordsCountOrder(StringBuilder sb) {
         List<StringBuilder> sentences = new ArrayList<>();
-        split(sentences, sb, ".");
+        split(sentences, sb, ". ");
         sentences.sort(Comparator.comparing(this::getAmountOfWords));
-        sentences.forEach(System.out::println);
+        return sentences;
+    }
+
+    public void displaySentencesInWordsCountOrder(StringBuilder sb) {
+        sortSentencesInWordsCountOrder(sb).forEach(System.out::println);
     }
 }

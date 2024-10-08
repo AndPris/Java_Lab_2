@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter a few sentences separated by '.'");
+        System.out.println("Enter a few sentences separated by '. '");
         Scanner sc = new Scanner(System.in);
         String sentence = sc.nextLine();
 
-        StringBuilderHandler stringBuilderHandler = new StringBuilderHandler(sentence);
-        stringBuilderHandler.displaySentencesInWordsCountOrder();
+        StringBuilderHandler stringBuilderHandler = new StringBuilderHandler();
+        stringBuilderHandler.displaySentencesInWordsCountOrder(new StringBuilder(sentence));
     }
 }
