@@ -13,6 +13,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String sentence = sc.nextLine();
 
+        System.out.println("Sentences in words count order:");
         StringBuilderHandler stringBuilderHandler = new StringBuilderHandler();
         stringBuilderHandler.displaySentencesInWordsCountOrder(new StringBuilder(sentence));
     }
